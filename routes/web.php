@@ -28,3 +28,11 @@ Route::get('blog/{id}',
 'BlogController@showDetail')->name
 ('show');
 
+Route::get('/blog/edit/{id}',
+'BlogController@showEdit')->name
+('edit');
+
+Route::post('/blog/update',
+'BlogController@exeUpdate')->name
+('update');
+
