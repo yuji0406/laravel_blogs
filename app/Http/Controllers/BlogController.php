@@ -67,7 +67,8 @@ class BlogController extends Controller
     public function exeUpdate(BlogRequest $request) {
         $inputs = $request->all();
 
-        dd($inputs)
+        dd($inputs);
+
         \DB::beginTransaction();
         try {
             $blog = Blog::find($inputs['id']);
@@ -80,28 +81,25 @@ class BlogController extends Controller
         \Session::flash('err_msg', 'ブログを登録しました');
         return redirect(route('blogs'));
     }
-}
-
-
     /**
      * ブログフォームを表示する
      *
      * @return view
      */
-
+    
     public function showCreate() {
         return view('blog.form');
     }
-
+    
     /**
      * ブログを登録する
      *
      * @return view
      */
-
+    
     public function exeStore(BlogRequest $request) {
         $inputs = $request->all();
-
+    
         \DB::beginTransaction();
         try {
             Blog::create($inputs);
@@ -110,7 +108,7 @@ class BlogController extends Controller
             \DB::rollback();
             abort(500);
         }
-
+    
         \Session::flash('err_msg', 'ブログを登録しました');
         return redirect(route('blogs'));
     }
